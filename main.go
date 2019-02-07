@@ -1,21 +1,34 @@
 package main
 
-import (
-    "fmt"
-    "io/ioutil"
-    "net/http"
-     "os"
-     )
-                func main() {
-                resp, err := http.Get("https://google.com")
-                 check(err)
-                body, err := ioutil.ReadAll(resp.Body)
-                check(err)
-                fmt.Println(len(body))
-                 }
-                 func check(err error) {
-                 if err != nil {
-                 fmt.Println(err)
-                 os.Exit(1)
-                  }
-                }
+import "encoding/json"
+import "fmt"
+
+type response1 struct {
+	Version   string
+        Lastcommitsha string
+	Description string
+       
+}
+
+type response2 struct {
+	Myapplication []string
+       
+}
+
+func main() {
+ 
+
+   
+ res2D := &response1{
+        Version:   "1.0",
+        Lastcommitsha: "asdfsdfasdf",
+        Description: "pre-interview technical test"}
+    strA, _ := json.Marshal(res2D)
+  
+
+  res3D := &response2{
+        Myapplication: []string{(string(strA))}}
+    fmt.Println(res3D)
+ 
+           } 
+ 
