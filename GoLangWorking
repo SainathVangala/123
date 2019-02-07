@@ -20,21 +20,17 @@ type response2 struct {
 }
 
 func ServeHTTP(w http.ResponseWriter, r *http.Request) {
-    url := "http://country.io/capital.json"
-    response, err := http.Get(url)
-    
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer response.Body.Close()
- 
-    responseData, err := ioutil.ReadAll(response.Body)
-    if err != nil {
-        log.Fatal(err)
-    }
- 
-    responseString := string(responseData)
-    fmt.Fprint(w, responseString)
+   
+     res2D := &response1{
+        Version:   "1.0",
+        Lastcommitsha: "asdfsdfasdf",
+        Description: "pre-interview technical test"}
+    strA, _ := json.Marshal(res2D)
+  
+  res3D := &response2{
+        Myapplication: []string{(string(strA))}}
+    fmt.Println(res3D)
+
 }
 func main() {
     http.HandleFunc("/health", ServeHTTP)
